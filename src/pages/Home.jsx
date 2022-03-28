@@ -17,9 +17,12 @@ const Home = () => {
     setFilterOption(!filterOption);
   };
 
-  useEffect(async () => {
-    const response = await axios.get("https://restcountries.com/v2/all");
-    setCountries(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("https://restcountries.com/v2/all");
+      setCountries(response.data);
+    }
+    fetchData();
   }, []);
 
   //   country search function
@@ -43,7 +46,7 @@ const Home = () => {
     }
   };
   return (
-    <div className={`py-5 ${mode == "dark" && "dark-mode"}`}>
+    <div className={`py-5 ${mode === "dark" && "dark-mode"}`}>
       <div className="container">
         <div className="d-flex justify-content-between flex-wrap gap-lg-0 gap-4">
           <div className="search-input-wrapper shadow-sm">

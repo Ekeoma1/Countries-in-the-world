@@ -8,7 +8,6 @@ const CountryDetails = () => {
   const mode = useSelector((state) => state.changeMode);
 
   const [country, setCountry] = useState(null);
-  const [formattedCountry, setFormattedCountry] = useState(null);
   let params = useParams();
   useEffect(() => {
     async function FetchData() {
@@ -16,21 +15,19 @@ const CountryDetails = () => {
         const response = await axios.get(
           `https://restcountries.com/v2/alpha/${params.id}`
         );
-        console.log(response.data);
         setCountry(response.data);
       } else {
         const response = await axios.get(
           `https://restcountries.com/v2/name/${params.id}?fullText=true`
         );
-        console.log(response.data);
         setCountry(response.data);
       }
     }
     FetchData();
-  }, [setCountry]);
+  }, [setCountry, params.id]);
 
   return (
-    <section className={`py-5 ${mode == "dark" && "dark-mode"}`}>
+    <section className={`py-5 ${mode === "dark" && "dark-mode"}`}>
       <div className="container">
         <Link className="detail-btn shadow-sm mb-5" to="/">
           <KeyboardBackspaceIcon /> back
@@ -39,7 +36,8 @@ const CountryDetails = () => {
         <div className="mt-5">
           {country === null ? (
             <div className="loader">loading...</div>
-          ) : Array.isArray(country) ? (
+          ) : // when the api data comes in an array
+          Array.isArray(country) ? (
             country.map((country, index) => {
               return (
                 <div className="country-detail-wrapper">
@@ -120,6 +118,7 @@ const CountryDetails = () => {
               );
             })
           ) : (
+            // this below is when the api fetched comes in as object
             <div className="country-detail-wrapper">
               <div>
                 <img className="img-fluid" src={country.flag} alt="" />
