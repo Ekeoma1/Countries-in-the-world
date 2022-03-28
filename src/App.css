@@ -46,6 +46,14 @@ nav header {
   font-weight: 800;
 }
 
+.nav-title {
+  color: var(--light-mode-text);
+}
+
+.dark-mode .nav-title {
+  color: var(--dark-mode-text);
+}
+
 nav button {
   font-weight: 600;
 }

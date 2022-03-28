@@ -5,6 +5,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Dark, Light } from "../action/changeMode";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const changeMode = useSelector((state) => state.changeMode);
@@ -18,7 +19,9 @@ const Navbar = () => {
         <div className="container">
           <div className="d-flex justify-content-between align-items-center">
             <header>
-              <div>Where in the world ?</div>
+              <Link to="/">
+                <div className="nav-title">Where in the world ?</div>
+              </Link>
             </header>
             <div>
               <button onClick={toggleModeSwitch}>

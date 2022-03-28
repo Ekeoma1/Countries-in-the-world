@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useSelector } from "react-redux";
 
 const CountryDetails = () => {
   const mode = useSelector((state) => state.changeMode);
+  let navigate = useNavigate();
 
   const [country, setCountry] = useState(null);
   let params = useParams();
@@ -29,9 +30,12 @@ const CountryDetails = () => {
   return (
     <section className={`py-5 ${mode === "dark" && "dark-mode"}`}>
       <div className="container">
-        <Link className="detail-btn shadow-sm mb-5" to="/">
+        <button
+          onClick={() => navigate(-1)}
+          className="detail-btn shadow-sm mb-5"
+        >
           <KeyboardBackspaceIcon /> back
-        </Link>
+        </button>
 
         <div className="mt-5">
           {country === null ? (
