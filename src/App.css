@@ -1,38 +1,205 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,600;0,800;1,300;1,600;1,800&display=swap");
+
+:root {
+  --light-mode-bg: hsl(0, 0%, 98%);
+  --light-mode-text: hsl(200, 15%, 8%);
+  --dark-mode-bg: hsl(207, 26%, 17%);
+  --dark-mode-text: hsl(0, 0%, 100%);
+  --dark-mode-element: hsl(209, 23%, 22%);
+  /* --light-mode-input: hsl(0, 0%, 52%); */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  border: none;
+  background-color: transparent;
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+body {
+  font-family: "Nunito Sans", sans-serif !important;
+  background-color: var(--light-mode-bg);
+  font-size: 14px;
+}
+
+nav {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #fff;
+}
+
+.dark-mode nav {
+  background-color: var(--dark-mode-element);
+  color: var(--dark-mode-text);
+}
+
+.dark-mode .loader {
+  color: var(--dark-mode-text);
+}
+
+nav header {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+nav button {
+  font-weight: 600;
+}
+
+.dark-mode nav button {
+  color: var(--dark-mode-text);
+}
+
+.search-input-wrapper {
+  width: 400px;
+  height: 40px;
+  display: grid;
+  grid-template-columns: 50px auto;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 5px;
+  background-color: var(--dark-mode-text);
 }
 
-.App-link {
-  color: #61dafb;
+.dark-mode .search-input-wrapper,
+.dark-mode .filter-card,
+.dark-mode .filter-card-option {
+  background-color: var(--dark-mode-element);
+  color: var(--dark-mode-text);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search-input {
+  height: 40px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: transparent;
+}
+
+.dark-mode .search-input::placeholder,
+.dark-mode .filter-card-option button {
+  color: var(--dark-mode-text);
+}
+
+.filter-card {
+  width: 200px;
+  background-color: var(--dark-mode-text);
+  height: 40px;
+  border-radius: 5px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.filter-card-option {
+  width: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: var(--dark-mode-text);
+  top: 50px;
+  z-index: 100;
+}
+
+.filter-card-option button {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.country-display {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 70px 0;
+}
+
+.country-card {
+  max-width: 250px;
+  color: var(--light-mode-text) !important;
+}
+
+.dark-mode .country-card {
+  background-color: var(--dark-mode-element);
+  color: var(--dark-mode-text) !important;
+}
+
+.country-img {
+  height: 150px;
+}
+
+.country-name {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.country-info > span {
+  font-weight: 600;
+}
+
+.country-details-page {
+  font-size: 16px;
+}
+
+.detail-btn {
+  padding: 10px 25px;
+  background-color: #fff;
+  border-radius: 5px;
+  color: var(--light-mode-text);
+}
+
+.dark-mode .detail-btn {
+  background-color: var(--dark-mode-element);
+  color: var(--dark-mode-text);
+}
+
+.dark-mode .country-detail-wrapper {
+  color: var(--dark-mode-text);
+}
+
+.country-detail-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  gap: 40px;
+}
+
+.country-info-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+.country-detail-wrapper img {
+  width: 400px;
+}
+
+.border-wrapper {
+  display: grid;
+  grid-template-columns: 150px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .country-display {
+    grid-template-columns: auto;
+    justify-content: center;
   }
-  to {
-    transform: rotate(360deg);
+  .country-detail-wrapper {
+    grid-template-columns: auto;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .country-info-wrapper,
+  .border-wrapper {
+    grid-template-columns: auto;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1024px) {
+  .country-display {
+    grid-template-columns: repeat(3, auto);
   }
 }
