@@ -20,7 +20,7 @@ ReactDOM.render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App />}>
+            <Route exact path="/" element={<App />}>
               <Route index element={<Home />} />
               <Route path=":id" element={<CountryDetails />} />
             </Route>

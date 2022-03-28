@@ -10,20 +10,23 @@ const CountryDetails = () => {
   const [country, setCountry] = useState(null);
   const [formattedCountry, setFormattedCountry] = useState(null);
   let params = useParams();
-  useEffect(async () => {
-    if (params.id.length < 4) {
-      const response = await axios.get(
-        `https://restcountries.com/v2/alpha/${params.id}`
-      );
-      console.log(response.data);
-      setCountry(response.data);
-    } else {
-      const response = await axios.get(
-        `https://restcountries.com/v2/name/${params.id}?fullText=true`
-      );
-      console.log(response.data);
-      setCountry(response.data);
+  useEffect(() => {
+    async function FetchData() {
+      if (params.id.length < 4) {
+        const response = await axios.get(
+          `https://restcountries.com/v2/alpha/${params.id}`
+        );
+        console.log(response.data);
+        setCountry(response.data);
+      } else {
+        const response = await axios.get(
+          `https://restcountries.com/v2/name/${params.id}?fullText=true`
+        );
+        console.log(response.data);
+        setCountry(response.data);
+      }
     }
+    FetchData();
   }, [setCountry]);
 
   return (
@@ -96,17 +99,20 @@ const CountryDetails = () => {
                     <div className="country-info border-wrapper">
                       <span>Border Countries:</span>{" "}
                       <div className="d-flex gap-2 flex-wrap">
-                        {country.borders.map((border, index) => {
-                          return (
-                            <Link
-                              key={index}
-                              className="detail-btn me-2 shadow-sm"
-                              to={`/${border}`}
-                            >
-                              {border}
-                            </Link>
-                          );
-                        })}
+                        {country.hasOwnProperty("borders")
+                          ? country.borders.map((border, index) => {
+                              return (
+                                <Link
+                                  onClick={() => window.reload()}
+                                  key={index}
+                                  className="detail-btn me-2 shadow-sm"
+                                  to={`/${border}`}
+                                >
+                                  {border}
+                                </Link>
+                              );
+                            })
+                          : ""}
                       </div>
                     </div>
                   </div>
